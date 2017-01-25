@@ -5,7 +5,7 @@
        Instituto de Computacao - Departamento de Ciencia da Computacao
 
 
-                      TUTORIAL DE COMPILADORES  - 2017
+                      TUTORIAL DE COMPILADORES - 2017
                
 
 Mini Compilador de Lua - luacc
@@ -20,10 +20,13 @@ Autor: Augusto C S Sales
 %}
 
 NAME         [a-zA-Z|_][a-zA-Z0-9_]*
+INTEGER      [0-9]*
 
 %%
 
-{NAME}       {printf("Achei um name!");}
+nil          {printf("Achei um nil!");}
+{INTEGER}    {printf("Achei um int! %d", atoi(yytext));}
+{NAME}       {printf("Achei um name! %s", yytext);}
 =            {printf("Achei um '=' !");}
 
 %%

@@ -15,56 +15,60 @@ Autor: Augusto C S Sales
 
 %{
 #include <stdio.h>
+#include "tree.h"
 #include "lex.yy.c"
 
 void yyerror(const char *s);
+
 %}
 
 %union {
+    TREE *tval;
     int   ival;
     char *sval;
 }
+
+%type <tval> lua chunk statlist stat varlist var explist exp
 
 //Tokens
 %token <sval> NAME
 %token        NIL
 %token <ival> INTEGER
 
-
 %start lua
 
 %%
 lua:
-    chunk {printf("bison: cheguei na raiz\n");}
+    chunk     {$$ = add_node(NULL, $1, NULL, CHUNK); destroy_tree($$); }
 ;
 
 chunk:
-    statlist
+    statlist  {$$ = add_node(NULL, $1, NULL, STATLIST);}
 ;
 
 statlist:
-    stat
+    stat      {$$ = add_node(NULL, $1, NULL, STAT);}
 ;
 
 stat:
-    varlist '=' explist
+    varlist '=' explist {$$ = add_node($1, NULL, $3, ATRIB);}
 ;
 
 varlist:
-    var
+    var       {$$ = add_node(NULL, $1, NULL, VAR);}
 ;
 
 var:
-    NAME      {printf("bison: achei um id! %s\n", yylval.sval);}
+    NAME      {$$ = add_node(NULL, NULL, NULL, NAME);}
 ;
 
 explist:
-    exp
+    exp       {$$ = add_node(NULL, $1, NULL, EXP);}
 ;
 
 exp:
-    NIL       {printf("bison: achei um nil!\n");}
-    | INTEGER {printf("bison: achei um int! %d\n", yylval.ival);}
+    NIL       {$$ = add_node(NULL, NULL, NULL, NIL);}
+    | INTEGER {$$ = add_node(NULL, NULL, NULL,INTEGER);}
 ;
 
 

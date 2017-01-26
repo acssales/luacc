@@ -14,7 +14,8 @@ Autor: Augusto C S Sales
 *******************************************************************************/
 
 %{
-#include<stdio.h>
+#include <stdio.h>
+#include "tree.h"
 #include "lua.tab.h"
 
 %}

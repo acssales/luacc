@@ -68,7 +68,7 @@ explist:
 
 exp:
     NIL       {$$ = add_node(NULL, NULL, NULL, NIL);}
-    | INTEGER {$$ = add_node(NULL, NULL, NULL,INTEGER);}
+    | INTEGER {$$ = add_node(NULL, NULL, NULL, INTEGER);}
 ;
 
 

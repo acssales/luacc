@@ -17,7 +17,6 @@ Autor: Augusto C S Sales
 #include <stdio.h>
 #include "tree.h"
 #include "lua.tab.h"
-
 %}
 
 NAME         [a-zA-Z|_][a-zA-Z0-9_]*

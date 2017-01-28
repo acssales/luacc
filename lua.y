@@ -39,7 +39,7 @@ void yyerror(const char *s);
 
 %%
 lua:
-    chunk     {$$ = add_node(NULL, $1, NULL, CHUNK); destroy_tree($$); }
+    chunk     {$$ = add_node(NULL, $1, NULL, CHUNK); writeCode($$); destroy_tree($$);}
 ;
 
 chunk:
@@ -59,7 +59,7 @@ varlist:
 ;
 
 var:
-    NAME      {$$ = add_node(NULL, NULL, NULL, NAME);}
+    NAME      {$$ = add_node(NULL, NULL, NULL, TNAME);}
 ;
 
 explist:
@@ -67,8 +67,8 @@ explist:
 ;
 
 exp:
-    NIL       {$$ = add_node(NULL, NULL, NULL, NIL);}
-    | INTEGER {$$ = add_node(NULL, NULL, NULL, INTEGER);}
+    NIL       {$$ = add_node(NULL, NULL, NULL, TNIL);}
+    | INTEGER {$$ = add_node(NULL, NULL, NULL, TINTEGER);}
 ;
 
 

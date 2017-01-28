@@ -32,10 +32,15 @@ enum node_type {
     VARLIST,
     VAR,
     EXPLIST,
-    EXP
+    EXP,
+    TINTEGER,
+    TNAME,
+    TNIL
 };
 
 TREE *add_node(TREE *t_left, TREE *t_center, TREE *t_right, int type);
+
+void writeCode(TREE *t);
 
 void destroy_tree(TREE *t);
 

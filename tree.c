@@ -43,3 +43,38 @@ void destroy_tree(TREE *t)
 }
 
 /*============================================================================*/
+
+/*============================= Code Generation ==============================*/
+
+void _writeCode(FILE *f, TREE *t)
+{
+    if (!t || !f) return;
+
+    switch(t->n_type) {
+        case ATRIB:
+            _writeCode(f, t->left);
+            _writeCode(f, t->right);
+            break;
+        case TNAME:
+            fprintf(f, "namevar:\n");
+            break;
+        case TINTEGER:
+            fprintf(f, "\t.long\t");
+            fprintf(f, "int\n");
+            break;
+        default:
+            break;
+    }
+
+    _writeCode(f, t->center);
+    return;
+}
+
+void writeCode(TREE *t)
+{
+    FILE *output = fopen("out.s", "w");
+    _writeCode(output, t);
+    fclose(output);
+}
+
+/*============================================================================*/

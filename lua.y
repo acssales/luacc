@@ -68,7 +68,7 @@ explist:
 
 exp:
     NIL       {$$ = add_node(NULL, NULL, NULL, TNIL);}
-    | INTEGER {$$ = add_node(NULL, NULL, NULL, TINTEGER);}
+    | INTEGER {$$ = add_node(NULL, NULL, NULL, TINTEGER); set_value($$, yylval.ival);}
 ;
 
 

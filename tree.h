@@ -18,6 +18,7 @@ Autor: Augusto C S Sales
 
 typedef struct node {
     int n_type;
+    int n_value;
     struct node *left;
     struct node *center;
     struct node *right;
@@ -39,6 +40,8 @@ enum node_type {
 };
 
 TREE *add_node(TREE *t_left, TREE *t_center, TREE *t_right, int type);
+
+void set_value(TREE *t, int value);
 
 void writeCode(TREE *t);
 

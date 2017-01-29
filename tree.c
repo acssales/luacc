@@ -31,6 +31,11 @@ TREE *add_node(TREE *t_left, TREE *t_center, TREE *t_right, int type)
     return tnode;
 }
 
+void set_value(TREE *t, int value)
+{
+    t->n_value = value;
+}
+
 void destroy_tree(TREE *t)
 {
     if(!t) return;
@@ -60,7 +65,7 @@ void _writeCode(FILE *f, TREE *t)
             break;
         case TINTEGER:
             fprintf(f, "\t.long\t");
-            fprintf(f, "int\n");
+            fprintf(f, "%d\n", t->n_value);
             break;
         default:
             break;

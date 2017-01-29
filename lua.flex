@@ -23,7 +23,7 @@ NAME         [a-zA-Z|_][a-zA-Z0-9_]*
 INTEGER      [0-9]*
 
 %%
-[ \t]
+[ \t\n]
 nil          {return NIL;}
 {INTEGER}    {yylval.ival = atoi(yytext); return INTEGER;}
 {NAME}       {yylval.sval = yytext; return NAME;}

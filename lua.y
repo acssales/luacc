@@ -47,7 +47,8 @@ chunk:
 ;
 
 statlist:
-    stat      {$$ = add_node(NULL, $1, NULL, STAT);}
+    statlist stat {$$ = add_node($1, NULL, $2, STATLIST);}
+    | stat      {$$ = add_node(NULL, $1, NULL, STAT);}
 ;
 
 stat:

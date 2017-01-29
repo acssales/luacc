@@ -56,6 +56,10 @@ void _writeCode(FILE *f, TREE *t)
     if (!t || !f) return;
 
     switch(t->n_type) {
+        case STATLIST:
+            _writeCode(f, t->left);
+            _writeCode(f, t->right);
+            break;
         case ATRIB:
             _writeCode(f, t->left);
             _writeCode(f, t->right);
